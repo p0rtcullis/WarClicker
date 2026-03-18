@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BaseWorkerStrategy" load_steps=2 format=3 uid="uid://bql53nutv1tl7"]
+
+[ext_resource type="Script" uid="uid://c8veevrjckqal" path="res://Util/Strategy/base_worker_strategy.gd" id="1_fww7f"]
+
+[resource]
+script = ExtResource("1_fww7f")
+metadata/_custom_type_script = "uid://c8veevrjckqal"

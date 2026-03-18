@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmg3wqjwo13dg"]
+
+[ext_resource type="Script" uid="uid://cnlhyugjlulr1" path="res://ManagementScreen/Scripts/management_screen.gd" id="1_0aw3l"]
+
+[node name="ManagementScreen" type="Node"]
+script = ExtResource("1_0aw3l")

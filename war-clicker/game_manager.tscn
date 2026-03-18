@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0n6btegy48v1"]
+
+[ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
+
+[node name="GameManager" type="Node"]
+
+[node name="MainScreenGui" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ManagementScreenGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="InfoBarGUI" type="Control" parent="ManagementScreenGUI"]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 128.0
+
+[node name="GreenPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="BrownPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MagentaPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PurplePointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
+
+[node name="UpgradeScreenGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CombatScreenGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugScreenGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 576.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AddGuardButton" type="Button" parent="DebugScreenGUI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 107.0
+offset_bottom = 47.0
+text = "Add Guard"
+
+[node name="UpdateTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
+[connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]
