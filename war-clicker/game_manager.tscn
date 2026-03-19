@@ -22,26 +22,58 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 128.0
 
-[node name="GreenPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+[node name="PointsGUI" type="HBoxContainer" parent="ManagementScreenGUI/InfoBarGUI"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI"]
+layout_mode = 2
+
+[node name="GreenPointsTitle" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer"]
+layout_mode = 2
+text = "Green Pts:"
+
+[node name="BrownPointsTitle" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer"]
+layout_mode = 2
+text = "Brown Pts:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI"]
+layout_mode = 2
+
+[node name="GreenPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 text = "0"
 
-[node name="BrownPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="BrownPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
 
-[node name="MagentaPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI"]
+layout_mode = 2
 
-[node name="PurplePointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="MagentaPointsTitle" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer3"]
+layout_mode = 2
+text = "Magenta Pts:"
+
+[node name="PurplePointsTitle" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer3"]
+layout_mode = 2
+text = "Purple Pts:"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI"]
+layout_mode = 2
+
+[node name="MagentaPointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="PurplePointsLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI/PointsGUI/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
 
 [node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
 

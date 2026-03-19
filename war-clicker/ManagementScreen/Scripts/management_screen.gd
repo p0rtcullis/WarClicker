@@ -49,5 +49,7 @@ func _on_count_points_button_pressed() -> void:
 
 
 func _on_update_timer_timeout() -> void:
-	total_green = point_count(POINTS.GREEN)
+	total_green += point_count(POINTS.GREEN)
+	%GreenPointsLabel.text = str(total_green)
+	print(total_green)
 	#print(total_green)
