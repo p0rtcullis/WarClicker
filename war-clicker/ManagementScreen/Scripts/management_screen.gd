@@ -2,12 +2,20 @@ extends Node
 
 var guard_template = preload("res://Worker/guard.tscn")
 
+var max_workers = 3
 var worker_list : Array = []
 
 var total_green : int = 0
+var green_mod : int = 0
+
 var total_brown : int = 0
+var brown_mod : int = 0
+
 var total_magenta : int = 0
+var magenta_mod : int = 0
+
 var total_purple : int = 0
+var purple_mod : int = 0
 
 enum Workers {GUARD}
 enum POINTS {GREEN}
@@ -41,7 +49,11 @@ func point_count(color : POINTS):
 
 
 func _on_add_guard_button_pressed() -> void:
-	create_worker(Workers.GUARD)
+	if worker_list.size() < max_workers:
+		create_worker(Workers.GUARD)
+	else:
+		print("Too many workers!")
+		print(worker_list.size())
 
 
 func _on_count_points_button_pressed() -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=3 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
+[ext_resource type="Script" uid="uid://ertesfb6senx" path="res://upgrade_screen_gui.gd" id="2_smx3j"]
 
 [node name="GameManager" type="Node"]
 
@@ -12,6 +13,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ManagementScreenGUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -80,8 +82,27 @@ text = "0"
 [node name="UpgradeScreenGUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 576.0
+script = ExtResource("2_smx3j")
+
+[node name="UpgradeMaxWorkersButton1" type="Button" parent="UpgradeScreenGUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 197.0
+offset_bottom = 118.0
+text = "Upgrade 
+Max Workers +1"
+
+[node name="UpgradeMaxWorkersButton2" type="Button" parent="UpgradeScreenGUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 136.0
+offset_right = 197.0
+offset_bottom = 190.0
+text = "Upgrade 
+Max Workers +2"
 
 [node name="CombatScreenGUI" type="Control" parent="."]
 layout_mode = 3
@@ -107,5 +128,6 @@ text = "Add Guard"
 [node name="UpdateTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="pressed" from="UpgradeScreenGUI/UpgradeMaxWorkersButton1" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_button_1_pressed"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]
