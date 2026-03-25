@@ -13,7 +13,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ManagementScreenGUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -77,7 +76,16 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 
+[node name="MaxWorkersLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 320.0
+offset_right = 360.0
+offset_bottom = 23.0
+text = "Max Workers: 0"
+
 [node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
+unique_name_in_owner = true
 
 [node name="UpgradeScreenGUI" type="Control" parent="."]
 layout_mode = 3
@@ -87,11 +95,13 @@ offset_bottom = 576.0
 script = ExtResource("2_smx3j")
 
 [node name="UpgradeMaxWorkersButton1" type="Button" parent="UpgradeScreenGUI"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 197.0
 offset_bottom = 118.0
+toggle_mode = true
 text = "Upgrade 
 Max Workers +1"
 
@@ -103,6 +113,14 @@ offset_right = 197.0
 offset_bottom = 190.0
 text = "Upgrade 
 Max Workers +2"
+
+[node name="ResetUpgradesButton" type="Button" parent="UpgradeScreenGUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 200.0
+offset_right = 193.0
+offset_bottom = 231.0
+text = "Reset Upgrades"
 
 [node name="CombatScreenGUI" type="Control" parent="."]
 layout_mode = 3
@@ -128,6 +146,8 @@ text = "Add Guard"
 [node name="UpdateTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="pressed" from="UpgradeScreenGUI/UpgradeMaxWorkersButton1" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_button_1_pressed"]
+[connection signal="toggled" from="UpgradeScreenGUI/UpgradeMaxWorkersButton1" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_button_1_toggled"]
+[connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
+[connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]

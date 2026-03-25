@@ -2,7 +2,10 @@ extends Node
 
 var guard_template = preload("res://Worker/guard.tscn")
 
-var max_workers = 3
+var max_workers = 3:
+	set(value):
+		%MaxWorkersLabel.text = "Max Workers: " +str(value)
+		print("Current Workers: " + str(max_workers))
 var worker_list : Array = []
 
 var total_green : int = 0
@@ -24,6 +27,7 @@ enum POINTS {GREEN}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#create_worker(Worker.GUARD)
+	%MaxWorkersLabel.text = "Max Workers: " +str(max_workers)
 	pass
 
 
@@ -56,12 +60,6 @@ func _on_add_guard_button_pressed() -> void:
 		print(worker_list.size())
 
 
-func _on_count_points_button_pressed() -> void:
-	point_count
-
-
 func _on_update_timer_timeout() -> void:
 	total_green += point_count(POINTS.GREEN)
 	%GreenPointsLabel.text = str(total_green)
-	print(total_green)
-	#print(total_green)
