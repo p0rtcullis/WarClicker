@@ -4,6 +4,7 @@ var guard_template = preload("res://Worker/guard.tscn")
 
 var max_workers = 3:
 	set(value):
+		max_workers = value
 		%MaxWorkersLabel.text = "Max Workers: " +str(value)
 		print("Current Workers: " + str(max_workers))
 var worker_list : Array = []
@@ -63,3 +64,6 @@ func _on_add_guard_button_pressed() -> void:
 func _on_update_timer_timeout() -> void:
 	total_green += point_count(POINTS.GREEN)
 	%GreenPointsLabel.text = str(total_green)
+
+func update_max_workers(new_max: int):
+	max_workers += new_max
