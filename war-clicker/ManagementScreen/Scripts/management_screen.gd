@@ -6,7 +6,7 @@ var max_workers = 3:
 	set(value):
 		max_workers = value
 		%MaxWorkersLabel.text = "Max Workers: " +str(value)
-		print("Current Workers: " + str(max_workers))
+		#print("Current Workers: " + str(max_workers))
 var worker_list : Array = []
 
 var total_green : int = 0
