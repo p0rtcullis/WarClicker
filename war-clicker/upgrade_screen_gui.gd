@@ -8,13 +8,14 @@ extends Control
 
 var active_upgrades = []
 
-@onready var all_upgrades = [%UpgradeMaxWorkersButton1, %UpgradeMaxWorkersButton2]
+@onready var all_upgrades = [%UpgradeButton]
 @onready var upgrades_with_prereqs = [%UpgradeMaxWorkersButton2]
 @onready var upgrade_max_workers_button_2_prereq = [%UpgradeMaxWorkersButton1]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	disable_advanced_tech()
+	%UpgradeButton.disabled = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,8 +68,19 @@ func _on_upgrade_max_workers_button_2_toggled(toggled_on: bool) -> void:
 
 func _on_costly_upgrade_button_1_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		for x in all_upgrades:
+			if x.stats.green_cost <= %ManagementScreen.total_green:
+				x.disabled = false
+				print("Active")
+			else:
+				print("Disabled")
+			%CostlyUpgradeButton1.button_pressed = false
+
+
+func _on_upgrade_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
 		if %ManagementScreen.max_workers > 3:
-			print("Good")
+			print(%UpgradeButton.stats.upgrade_name)
 		else:
 			print("Bad")
 			%CostlyUpgradeButton1.button_pressed = false

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=4 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
 [ext_resource type="Script" uid="uid://ertesfb6senx" path="res://upgrade_screen_gui.gd" id="2_smx3j"]
+[ext_resource type="PackedScene" uid="uid://dya763ecg0nbu" path="res://Upgrades/upgrade_button.tscn" id="3_o2178"]
 
 [node name="GameManager" type="Node"]
 
@@ -134,6 +135,16 @@ offset_bottom = 95.0
 toggle_mode = true
 text = "CostlyUpgrade1"
 
+[node name="UpgradeButton" parent="UpgradeScreenGUI" instance=ExtResource("3_o2178")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 216.0
+offset_top = 112.0
+offset_right = 224.0
+offset_bottom = 120.0
+text = "Upgrade Button Resource
+"
+
 [node name="CombatScreenGUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -163,5 +174,6 @@ autostart = true
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/CostlyUpgradeButton1" to="UpgradeScreenGUI" method="_on_costly_upgrade_button_1_toggled"]
+[connection signal="toggled" from="UpgradeScreenGUI/UpgradeButton" to="UpgradeScreenGUI" method="_on_upgrade_button_toggled"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]
