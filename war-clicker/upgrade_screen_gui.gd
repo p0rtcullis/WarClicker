@@ -1,5 +1,11 @@
 extends Control
 
+#Every time points update, go through every NON-PURCHASED upgrade.
+#Take an array of purchased upgrades, compare to all upgrades, return unpurchased
+#For each unpurchased, check against points, disable the button.
+
+#also, refactor button as object with resource
+
 var active_upgrades = []
 
 @onready var all_upgrades = [%UpgradeMaxWorkersButton1, %UpgradeMaxWorkersButton2]
