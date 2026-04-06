@@ -21,8 +21,8 @@ var magenta_mod : int = 0
 var total_purple : int = 0
 var purple_mod : int = 0
 
-enum Workers {GUARD}
-enum POINTS {GREEN}
+enum WORKERS {GUARD}
+enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,9 +36,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func create_worker(current_worker: Workers):
+func create_worker(current_worker: WORKERS):
 	match current_worker:
-		Workers.GUARD:
+		WORKERS.GUARD:
 			var guard = guard_template.instantiate()
 			add_child(guard)
 			worker_list.append(guard)
@@ -49,13 +49,19 @@ func point_count(color : POINTS):
 		match color:
 			POINTS.GREEN:
 				point_total += worker.stats.green
+			POINTS.BROWN:
+				point_total += worker.stats.brown
+			POINTS.MAGENTA:
+				point_total += worker.stats.magenta
+			POINTS.PURPLE:
+				point_total += worker.stats.purple
 	return point_total
 	
 
 
 func _on_add_guard_button_pressed() -> void:
 	if worker_list.size() < max_workers:
-		create_worker(Workers.GUARD)
+		create_worker(WORKERS.GUARD)
 	else:
 		print("Too many workers!")
 		print(worker_list.size())
@@ -67,3 +73,16 @@ func _on_update_timer_timeout() -> void:
 
 func update_max_workers(new_max: int):
 	max_workers += new_max
+	
+func update_points(new_points: int, color : WORKERS):
+	match color:
+			POINTS.GREEN:
+				total_green += new_points
+			POINTS.BROWN:
+				total_brown += new_points
+			POINTS.MAGENTA:
+				total_magenta += new_points
+			POINTS.PURPLE:
+				total_purple += new_points
+				
+	
