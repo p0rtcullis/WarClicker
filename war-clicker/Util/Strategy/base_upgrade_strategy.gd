@@ -8,4 +8,4 @@ extends Resource
 @export var brown_cost : int = 0
 @export var magenta_cost : int = 0
 @export var purple_cost : int = 0
-var prereq : Array = []
+@export var prereq : Array = []

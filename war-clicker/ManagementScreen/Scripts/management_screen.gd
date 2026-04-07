@@ -9,10 +9,17 @@ var max_workers = 3:
 		#print("Current Workers: " + str(max_workers))
 var worker_list : Array = []
 
-@export var total_green : int = 0
+@export var total_green : int = 0:
+	set(value):
+		total_green = value
+		%UpgradeScreenGUI.disable_unafforable_techs()
+		
 var green_mod : int = 0
 
-var total_brown : int = 0
+var total_brown : int = 0:
+	set(value):
+		total_brown = value
+		%UpgradeScreenGUI.disable_unafforable_techs()
 var brown_mod : int = 0
 
 var total_magenta : int = 0

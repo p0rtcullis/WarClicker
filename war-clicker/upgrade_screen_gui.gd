@@ -16,7 +16,8 @@ var active_upgrades = []
 func _ready() -> void:
 	disable_advanced_tech()
 	%UpgradeButton.disabled = true
-
+	for upgrade in all_upgrades:
+		upgrade.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,7 +29,12 @@ func _on_reset_upgrades_button_pressed() -> void:
 	active_upgrades.clear()
 	disable_advanced_tech()
 	
-
+func disable_unafforable_techs():
+	for x in all_upgrades:
+			if x.stats.green_cost <= %ManagementScreen.total_green:
+					x.disabled = false
+			else:
+					x.disabled = true
 func disable_advanced_tech():
 	for upgrade in upgrades_with_prereqs:
 		upgrade.disabled = true
@@ -68,13 +74,15 @@ func _on_upgrade_max_workers_button_2_toggled(toggled_on: bool) -> void:
 
 func _on_costly_upgrade_button_1_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		for x in all_upgrades:
-			if x.stats.green_cost <= %ManagementScreen.total_green:
-				x.disabled = false
-				print("Active")
-			else:
-				print("Disabled")
-			%CostlyUpgradeButton1.button_pressed = false
+		%ManagementScreen.update_points(-100, %ManagementScreen.POINTS.GREEN)
+			
+		#for x in all_upgrades:
+			#if x.stats.green_cost <= %ManagementScreen.total_green:
+				#x.disabled = false
+				#print("Active")
+			#else:
+				#print("Disabled")
+			#%CostlyUpgradeButton1.button_pressed = false
 
 
 func _on_upgrade_button_toggled(toggled_on: bool) -> void:

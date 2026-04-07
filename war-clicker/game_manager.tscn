@@ -89,6 +89,7 @@ text = "Max Workers: 0"
 unique_name_in_owner = true
 
 [node name="UpgradeScreenGUI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
