@@ -20,13 +20,24 @@ var total_brown : int = 0:
 	set(value):
 		total_brown = value
 		%UpgradeScreenGUI.disable_unafforable_techs()
+		
 var brown_mod : int = 0
 
-var total_magenta : int = 0
+var total_magenta : int = 0:
+	set(value):
+		total_magenta = value
+		%UpgradeScreenGUI.disable_unafforable_techs()
+		
 var magenta_mod : int = 0
 
-var total_purple : int = 0
+var total_purple : int = 0:
+	set(value):
+		total_purple = value
+		%UpgradeScreenGUI.disable_unafforable_techs()
+		
 var purple_mod : int = 0
+
+
 
 enum WORKERS {GUARD}
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}

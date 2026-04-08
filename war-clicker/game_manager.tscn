@@ -96,28 +96,6 @@ offset_right = 1152.0
 offset_bottom = 576.0
 script = ExtResource("2_smx3j")
 
-[node name="UpgradeMaxWorkersButton1" type="Button" parent="UpgradeScreenGUI"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 197.0
-offset_bottom = 118.0
-toggle_mode = true
-text = "Upgrade 
-Max Workers +1"
-
-[node name="UpgradeMaxWorkersButton2" type="Button" parent="UpgradeScreenGUI"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 64.0
-offset_top = 136.0
-offset_right = 197.0
-offset_bottom = 190.0
-toggle_mode = true
-text = "Upgrade 
-Max Workers +2"
-
 [node name="ResetUpgradesButton" type="Button" parent="UpgradeScreenGUI"]
 layout_mode = 0
 offset_left = 64.0
@@ -126,15 +104,13 @@ offset_right = 193.0
 offset_bottom = 231.0
 text = "Reset Upgrades"
 
-[node name="CostlyUpgradeButton1" type="Button" parent="UpgradeScreenGUI"]
+[node name="UpgradeMaxWorkers1" parent="UpgradeScreenGUI" instance=ExtResource("3_o2178")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 216.0
+offset_left = 64.0
 offset_top = 64.0
-offset_right = 338.0
+offset_right = 167.0
 offset_bottom = 95.0
-toggle_mode = true
-text = "CostlyUpgrade1"
 
 [node name="UpgradeButton" parent="UpgradeScreenGUI" instance=ExtResource("3_o2178")]
 unique_name_in_owner = true
@@ -170,11 +146,9 @@ text = "Add Guard"
 [node name="UpdateTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="toggled" from="UpgradeScreenGUI/UpgradeMaxWorkersButton1" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_button_1_toggled"]
-[connection signal="toggled" from="UpgradeScreenGUI/UpgradeMaxWorkersButton2" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_button_2_toggled"]
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
-[connection signal="toggled" from="UpgradeScreenGUI/CostlyUpgradeButton1" to="UpgradeScreenGUI" method="_on_costly_upgrade_button_1_toggled"]
+[connection signal="toggled" from="UpgradeScreenGUI/UpgradeMaxWorkers1" to="UpgradeScreenGUI" method="_on_upgrade_max_workers_1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/UpgradeButton" to="UpgradeScreenGUI" method="_on_upgrade_button_toggled"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]
