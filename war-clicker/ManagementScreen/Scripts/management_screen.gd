@@ -6,12 +6,12 @@ var max_workers = 3:
 	set(value):
 		max_workers = value
 		%MaxWorkersLabel.text = "Max Workers: " +str(value)
-		#print("Current Workers: " + str(max_workers))
 var worker_list : Array = []
 
 @export var total_green : int = 0:
 	set(value):
 		total_green = value
+		%GreenPointsLabel.text = str(total_green)
 		%UpgradeScreenGUI.disable_unafforable_techs()
 		
 var green_mod : int = 0
@@ -19,6 +19,7 @@ var green_mod : int = 0
 var total_brown : int = 0:
 	set(value):
 		total_brown = value
+		%BrownPointsLabel.text = str(total_brown)
 		%UpgradeScreenGUI.disable_unafforable_techs()
 		
 var brown_mod : int = 0
@@ -26,6 +27,7 @@ var brown_mod : int = 0
 var total_magenta : int = 0:
 	set(value):
 		total_magenta = value
+		%MagentaPointsLabel.text = str(total_magenta)
 		%UpgradeScreenGUI.disable_unafforable_techs()
 		
 var magenta_mod : int = 0
@@ -33,6 +35,7 @@ var magenta_mod : int = 0
 var total_purple : int = 0:
 	set(value):
 		total_purple = value
+		%GreenPointsLabel.text = str(total_purple)
 		%UpgradeScreenGUI.disable_unafforable_techs()
 		
 var purple_mod : int = 0
@@ -84,7 +87,6 @@ func _on_add_guard_button_pressed() -> void:
 
 func _on_update_timer_timeout() -> void:
 	total_green += point_count(POINTS.GREEN)
-	%GreenPointsLabel.text = str(total_green)
 
 func update_max_workers(new_max: int):
 	max_workers += new_max
