@@ -80,9 +80,6 @@ func point_count(color : POINTS):
 func _on_add_guard_button_pressed() -> void:
 	if worker_list.size() < max_workers:
 		create_worker(WORKERS.GUARD)
-	else:
-		print("Too many workers!")
-		print(worker_list.size())
 
 
 func _on_update_timer_timeout() -> void:

@@ -8,5 +8,3 @@ extends Resource
 @export var brown_cost : int = 0
 @export var magenta_cost : int = 0
 @export var purple_cost : int = 0
-#ar all_costs : Array = [green_cost,brown_cost,magenta_cost,purple_cost]
-@export var prereq : Array = []
