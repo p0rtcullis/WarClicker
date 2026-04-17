@@ -8,6 +8,8 @@ var max_workers = 3:
 		%MaxWorkersLabel.text = "Max Workers: " +str(value)
 var worker_list : Array = []
 
+var unit_list : Array = []
+
 @export var total_green : int = 0:
 	set(value):
 		total_green = value
@@ -40,7 +42,10 @@ var total_purple : int = 0:
 		
 var purple_mod : int = 0
 
-
+#chance to produce a unit
+var guard_production_chance : int = 0
+#number of units produced per worker
+var guard_production_eff : int = 0
 
 enum WORKERS {GUARD}
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}

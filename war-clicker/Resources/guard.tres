@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://c8veevrjckqal" path="res://Util/Strategy/base_worker_strategy.gd" id="1_fww7f"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_fww7f")
 metadata/_custom_type_script = "uid://c8veevrjckqal"

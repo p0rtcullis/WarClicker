@@ -107,6 +107,7 @@ unique_name_in_owner = true
 
 [node name="UpgradeScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -167,5 +168,6 @@ autostart = true
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
+[connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
 [connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]

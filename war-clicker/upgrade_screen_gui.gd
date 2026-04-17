@@ -39,6 +39,7 @@ func disable_advanced_tech(prerequisites):
 	return all_active
 
 func _on_upgrade1_toggled(toggled_on: bool) -> void:
+	#refactor this so that points are deducted/added for all costs dynamically, make it a function
 	if toggled_on:
 		%ManagementScreen.update_points(-100,%ManagementScreen.POINTS.GREEN)
 		%ManagementScreen.update_max_workers(1)
@@ -49,3 +50,5 @@ func _on_upgrade1_toggled(toggled_on: bool) -> void:
 		%ManagementScreen.update_max_workers(-1)
 		%Upgrade1.disabled = false
 		
+func _on_upgrade_2_toggled(toggled_on: bool) -> void:
+	pass # Replace with function body.

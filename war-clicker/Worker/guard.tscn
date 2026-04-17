@@ -6,3 +6,7 @@
 [node name="Worker" type="Node2D"]
 script = ExtResource("1_kepy1")
 stats = ExtResource("2_c8pys")
+
+[node name="production_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="production_timer" to="." method="_on_production_timer_timeout"]
