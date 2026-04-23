@@ -102,6 +102,14 @@ offset_right = 360.0
 offset_bottom = 23.0
 text = "Max Workers: 0"
 
+[node name="EndTurnButton" type="Button" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 16.0
+offset_right = 550.0
+offset_bottom = 47.0
+text = "End Turn"
+
 [node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
 unique_name_in_owner = true
 
@@ -162,12 +170,8 @@ offset_right = 107.0
 offset_bottom = 47.0
 text = "Add Guard"
 
-[node name="UpdateTimer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
 [connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]
-[connection signal="timeout" from="UpdateTimer" to="ManagementScreenGUI/ManagementScreen" method="_on_update_timer_timeout"]

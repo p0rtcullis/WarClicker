@@ -47,7 +47,7 @@ var guard_production_chance : int = 0
 #number of units produced per worker
 var guard_production_eff : int = 0
 
-enum WORKERS {GUARD}
+enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,WARLOCK,SPIRITSEER,AVENGER,HAWK,SCORPION}
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
 
 
@@ -90,8 +90,8 @@ func _on_add_guard_button_pressed() -> void:
 		create_worker(WORKERS.GUARD)
 
 
-func _on_update_timer_timeout() -> void:
-	total_green += point_count(POINTS.GREEN)
+#func _on_update_timer_timeout() -> void:
+	#total_green += point_count(POINTS.GREEN)
 
 func update_max_workers(new_max: int):
 	max_workers += new_max
