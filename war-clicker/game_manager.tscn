@@ -1,9 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=13 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
+[ext_resource type="PackedScene" uid="uid://b3nrf0a4v8gbs" path="res://Worker/guard.tscn" id="2_8jrwq"]
 [ext_resource type="Script" uid="uid://ertesfb6senx" path="res://upgrade_screen_gui.gd" id="2_smx3j"]
+[ext_resource type="Script" uid="uid://c8veevrjckqal" path="res://Util/Strategy/base_worker_strategy.gd" id="3_gth8u"]
 [ext_resource type="PackedScene" uid="uid://dya763ecg0nbu" path="res://Upgrades/upgrade_button.tscn" id="3_o2178"]
 [ext_resource type="Script" uid="uid://do7phg52jpppn" path="res://Util/Strategy/base_upgrade_strategy.gd" id="4_d5upp"]
+[ext_resource type="PackedScene" uid="uid://de7db0m0ymybd" path="res://Worker/spider.tscn" id="4_dq8jp"]
+[ext_resource type="Texture2D" uid="uid://csddq02y724mh" path="res://layout1.png" id="5_vk86k"]
+
+[sub_resource type="Resource" id="Resource_yawsv"]
+resource_local_to_scene = true
+script = ExtResource("3_gth8u")
+worker_name = ""
+metadata/_custom_type_script = "uid://c8veevrjckqal"
+
+[sub_resource type="Resource" id="Resource_le433"]
+resource_local_to_scene = true
+script = ExtResource("3_gth8u")
+worker_name = "Warp Spider"
+metadata/_custom_type_script = "uid://c8veevrjckqal"
 
 [sub_resource type="Resource" id="Resource_vk86k"]
 resource_local_to_scene = true
@@ -39,7 +55,7 @@ offset_bottom = 648.0
 [node name="InfoBarGUI" type="Control" parent="ManagementScreenGUI"]
 anchors_preset = 0
 offset_right = 1152.0
-offset_bottom = 128.0
+offset_bottom = 64.0
 
 [node name="PointsGUI" type="HBoxContainer" parent="ManagementScreenGUI/InfoBarGUI"]
 layout_mode = 0
@@ -113,11 +129,25 @@ text = "End Turn"
 [node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
 unique_name_in_owner = true
 
-[node name="UpgradeScreenGUI" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
+[node name="Control" type="Control" parent="ManagementScreenGUI/ManagementScreen"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Guard" parent="ManagementScreenGUI/ManagementScreen/Control" instance=ExtResource("2_8jrwq")]
+unique_name_in_owner = true
+stats = SubResource("Resource_yawsv")
+
+[node name="Spider" parent="ManagementScreenGUI/ManagementScreen/Control" instance=ExtResource("4_dq8jp")]
+unique_name_in_owner = true
+stats = SubResource("Resource_le433")
+
+[node name="UpgradeScreenGUI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 576.0
 script = ExtResource("2_smx3j")
@@ -162,16 +192,20 @@ offset_top = 576.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="AddGuardButton" type="Button" parent="DebugScreenGUI"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 107.0
-offset_bottom = 47.0
-text = "Add Guard"
+[node name="Layout2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575.5, 322.75)
+scale = Vector2(1.0424956, 0.77718043)
+texture = ExtResource("5_vk86k")
 
+[node name="Layout1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575, 323.25)
+scale = Vector2(1.0415163, 0.7778443)
+texture = ExtResource("5_vk86k")
+
+[connection signal="pressed" from="ManagementScreenGUI/InfoBarGUI/EndTurnButton" to="ManagementScreenGUI/ManagementScreen" method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
-[connection signal="pressed" from="DebugScreenGUI/AddGuardButton" to="ManagementScreenGUI/ManagementScreen" method="_on_add_guard_button_pressed"]

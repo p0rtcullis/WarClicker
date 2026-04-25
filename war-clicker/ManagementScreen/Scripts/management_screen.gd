@@ -1,8 +1,8 @@
 extends Node
 
-var guard_template = preload("res://Worker/guard.tscn")
+var current_turn : int = 0
 
-var max_workers = 3:
+var max_workers : int = 3:
 	set(value):
 		max_workers = value
 		%MaxWorkersLabel.text = "Max Workers: " +str(value)
@@ -42,19 +42,14 @@ var total_purple : int = 0:
 		
 var purple_mod : int = 0
 
-#chance to produce a unit
-var guard_production_chance : int = 0
-#number of units produced per worker
-var guard_production_eff : int = 0
-
-enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,WARLOCK,SPIRITSEER,AVENGER,HAWK,SCORPION}
+enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,WARLOCK,SEER,AVENGER,HAWK,SCORPION}
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#create_worker(Worker.GUARD)
 	%MaxWorkersLabel.text = "Max Workers: " +str(max_workers)
+	worker_list.append(%Guard)
 	pass
 
 
@@ -62,12 +57,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func create_worker(current_worker: WORKERS):
-	match current_worker:
-		WORKERS.GUARD:
-			var guard = guard_template.instantiate()
-			add_child(guard)
-			worker_list.append(guard)
 
 func point_count(color : POINTS):
 	var point_total : int = 0
@@ -84,18 +73,10 @@ func point_count(color : POINTS):
 	return point_total
 	
 
-
-func _on_add_guard_button_pressed() -> void:
-	if worker_list.size() < max_workers:
-		create_worker(WORKERS.GUARD)
-
-
-#func _on_update_timer_timeout() -> void:
-	#total_green += point_count(POINTS.GREEN)
-
 func update_max_workers(new_max: int):
 	max_workers += new_max
 	
+# For modifying point totals via upgrades
 func update_points(new_points: int, color : WORKERS):
 	match color:
 			POINTS.GREEN:
@@ -108,3 +89,8 @@ func update_points(new_points: int, color : WORKERS):
 				total_purple += new_points
 				
 	
+func _on_end_turn_button_pressed() -> void:
+		total_green += point_count(POINTS.GREEN)
+		total_brown += point_count(POINTS.BROWN)
+		point_count(POINTS.MAGENTA)
+		point_count(POINTS.PURPLE)

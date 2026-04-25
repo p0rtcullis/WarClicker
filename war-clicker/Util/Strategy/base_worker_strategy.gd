@@ -8,4 +8,7 @@ extends Resource
 @export var brown : int = 0
 @export var magenta : int = 0
 @export var purple : int = 0
-var upgrades : Array = []
+#chance to produce a unit
+@export var production_chance : int = 0
+#number of units produced per worker
+@export var production_eff : int = 0
