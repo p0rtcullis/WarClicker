@@ -12,3 +12,4 @@ extends Resource
 @export var production_chance : int = 0
 #number of units produced per worker
 @export var production_eff : int = 0
+@export var unlocked : bool = false

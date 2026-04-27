@@ -18,7 +18,7 @@ var unit_list : Array = []
 		
 var green_mod : int = 0
 
-var total_brown : int = 0:
+@export var total_brown : int = 0:
 	set(value):
 		total_brown = value
 		%BrownPointsLabel.text = str(total_brown)
@@ -26,7 +26,7 @@ var total_brown : int = 0:
 		
 var brown_mod : int = 0
 
-var total_magenta : int = 0:
+@export var total_magenta : int = 0:
 	set(value):
 		total_magenta = value
 		%MagentaPointsLabel.text = str(total_magenta)
@@ -34,10 +34,10 @@ var total_magenta : int = 0:
 		
 var magenta_mod : int = 0
 
-var total_purple : int = 0:
+@export var total_purple : int = 0:
 	set(value):
 		total_purple = value
-		%GreenPointsLabel.text = str(total_purple)
+		%PurplePointsLabel.text = str(total_purple)
 		%UpgradeScreenGUI.disable_unafforable_techs()
 		
 var purple_mod : int = 0
@@ -50,14 +50,10 @@ enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
 func _ready() -> void:
 	%MaxWorkersLabel.text = "Max Workers: " +str(max_workers)
 	worker_list.append(%Guard)
+	worker_list.append(%Spider)
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
+#used for round ending totals
 func point_count(color : POINTS):
 	var point_total : int = 0
 	for worker in worker_list:
@@ -69,7 +65,7 @@ func point_count(color : POINTS):
 			POINTS.MAGENTA:
 				point_total += worker.stats.magenta
 			POINTS.PURPLE:
-				point_total += worker.stats.purple
+				point_total += worker.stats.purple			
 	return point_total
 	
 
@@ -77,7 +73,7 @@ func update_max_workers(new_max: int):
 	max_workers += new_max
 	
 # For modifying point totals via upgrades
-func update_points(new_points: int, color : WORKERS):
+func update_points(new_points: int, color : POINTS):
 	match color:
 			POINTS.GREEN:
 				total_green += new_points
@@ -90,7 +86,8 @@ func update_points(new_points: int, color : WORKERS):
 				
 	
 func _on_end_turn_button_pressed() -> void:
-		total_green += point_count(POINTS.GREEN)
-		total_brown += point_count(POINTS.BROWN)
-		point_count(POINTS.MAGENTA)
-		point_count(POINTS.PURPLE)
+	total_green += point_count(POINTS.GREEN)
+	total_brown += point_count(POINTS.BROWN)
+	total_magenta += point_count(POINTS.MAGENTA)
+	total_purple += point_count(POINTS.PURPLE)
+	

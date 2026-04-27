@@ -1,24 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=15 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
 [ext_resource type="PackedScene" uid="uid://b3nrf0a4v8gbs" path="res://Worker/guard.tscn" id="2_8jrwq"]
+[ext_resource type="Script" uid="uid://cckuthll68xey" path="res://side_bar_gui.gd" id="2_dq8jp"]
 [ext_resource type="Script" uid="uid://ertesfb6senx" path="res://upgrade_screen_gui.gd" id="2_smx3j"]
 [ext_resource type="Script" uid="uid://c8veevrjckqal" path="res://Util/Strategy/base_worker_strategy.gd" id="3_gth8u"]
 [ext_resource type="PackedScene" uid="uid://dya763ecg0nbu" path="res://Upgrades/upgrade_button.tscn" id="3_o2178"]
 [ext_resource type="Script" uid="uid://do7phg52jpppn" path="res://Util/Strategy/base_upgrade_strategy.gd" id="4_d5upp"]
 [ext_resource type="PackedScene" uid="uid://de7db0m0ymybd" path="res://Worker/spider.tscn" id="4_dq8jp"]
 [ext_resource type="Texture2D" uid="uid://csddq02y724mh" path="res://layout1.png" id="5_vk86k"]
+[ext_resource type="Script" uid="uid://bb3p0qylaajkr" path="res://debug_screen_gui.gd" id="9_gth8u"]
 
 [sub_resource type="Resource" id="Resource_yawsv"]
 resource_local_to_scene = true
 script = ExtResource("3_gth8u")
-worker_name = ""
+worker_name = "Guardian"
+unlocked = true
 metadata/_custom_type_script = "uid://c8veevrjckqal"
 
 [sub_resource type="Resource" id="Resource_le433"]
 resource_local_to_scene = true
 script = ExtResource("3_gth8u")
 worker_name = "Warp Spider"
+brown = 5
+purple = 5
 metadata/_custom_type_script = "uid://c8veevrjckqal"
 
 [sub_resource type="Resource" id="Resource_vk86k"]
@@ -39,6 +44,12 @@ metadata/_custom_type_script = "uid://do7phg52jpppn"
 
 [node name="GameManager" type="Node"]
 
+[node name="Layout1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(575, 323.25)
+scale = Vector2(1.0415163, 0.7778443)
+texture = ExtResource("5_vk86k")
+
 [node name="MainScreenGui" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -51,6 +62,45 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[node name="SideBarGUI" type="Control" parent="ManagementScreenGUI"]
+anchors_preset = 0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 576.0
+script = ExtResource("2_dq8jp")
+
+[node name="ProductionScreenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 142.0
+offset_bottom = 47.0
+text = "Production"
+
+[node name="UpgradeScreeenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 80.0
+offset_right = 138.0
+offset_bottom = 111.0
+text = "Upgrades"
+
+[node name="CombatScreenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 144.0
+offset_right = 133.0
+offset_bottom = 175.0
+text = "Combat"
+
+[node name="ArchiveScreenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 208.0
+offset_right = 163.0
+offset_bottom = 239.0
+text = "Archive"
 
 [node name="InfoBarGUI" type="Control" parent="ManagementScreenGUI"]
 anchors_preset = 0
@@ -132,21 +182,24 @@ unique_name_in_owner = true
 [node name="Control" type="Control" parent="ManagementScreenGUI/ManagementScreen"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -64.0
+offset_bottom = 64.0
 
 [node name="Guard" parent="ManagementScreenGUI/ManagementScreen/Control" instance=ExtResource("2_8jrwq")]
 unique_name_in_owner = true
+position = Vector2(8, 16)
 stats = SubResource("Resource_yawsv")
 
 [node name="Spider" parent="ManagementScreenGUI/ManagementScreen/Control" instance=ExtResource("4_dq8jp")]
 unique_name_in_owner = true
+position = Vector2(8, 32)
 stats = SubResource("Resource_le433")
 
 [node name="UpgradeScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
+offset_left = 192.0
 offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 576.0
@@ -182,8 +235,18 @@ prereq = [NodePath("../Upgrade1")]
 [node name="CombatScreenGUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 576.0
+
+[node name="ProductionScreenGUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 1152.0
+offset_bottom = 576.0
 
 [node name="DebugScreenGUI" type="Control" parent="."]
 layout_mode = 3
@@ -191,21 +254,29 @@ anchors_preset = 0
 offset_top = 576.0
 offset_right = 1152.0
 offset_bottom = 648.0
+script = ExtResource("9_gth8u")
 
-[node name="Layout2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(575.5, 322.75)
-scale = Vector2(1.0424956, 0.77718043)
-texture = ExtResource("5_vk86k")
+[node name="ToggleGuard" type="Button" parent="DebugScreenGUI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 119.0
+offset_bottom = 39.0
+toggle_mode = true
+text = "Toggle Guard
+"
 
-[node name="Layout1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(575, 323.25)
-scale = Vector2(1.0415163, 0.7778443)
-texture = ExtResource("5_vk86k")
+[node name="ToggleSpider" type="Button" parent="DebugScreenGUI"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 39.0
+text = "Toggle Spider"
 
 [connection signal="pressed" from="ManagementScreenGUI/InfoBarGUI/EndTurnButton" to="ManagementScreenGUI/ManagementScreen" method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
+[connection signal="toggled" from="DebugScreenGUI/ToggleGuard" to="DebugScreenGUI" method="_on_toggle_guard_toggled"]
