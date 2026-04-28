@@ -1,11 +1,25 @@
 extends Control
 
+@onready var last_screen = %ProductionScreenGUI
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _on_production_screen_toggle_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		%UpgradeScreenGUI.hide()
+		%CombatScreenGUI.hide()
+		%ProductionScreenGUI.show()
+		last_screen = %ProductionScreenGUI
+	else:
+		%ProductionScreenGUI.hide()
+		last_screen.show()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+func _on_upgrade_screeen_toggle_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		%UpgradeScreenGUI.show()
+		%CombatScreenGUI.hide()
+		%ProductionScreenGUI.hide()
+		last_screen = %UpgradeScreenGUI
+	else:
+		%UpgradeScreenGUI.hide()
+		last_screen.show()
