@@ -68,7 +68,6 @@ func point_count(color : POINTS):
 				point_total += worker.stats.purple			
 	return point_total
 	
-
 func update_max_workers(new_max: int):
 	max_workers += new_max
 	

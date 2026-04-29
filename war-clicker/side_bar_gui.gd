@@ -1,25 +1,29 @@
 extends Control
 
-@onready var last_screen = %ProductionScreenGUI
-
-func _on_production_screen_toggle_toggled(toggled_on: bool) -> void:
-	if toggled_on:
+func _on_production_screen_toggle_pressed() -> void:
+	if %ProductionScreenGUI.visible == false:
+		%ArchiveScreenGUI.hide()
 		%UpgradeScreenGUI.hide()
 		%CombatScreenGUI.hide()
 		%ProductionScreenGUI.show()
-		last_screen = %ProductionScreenGUI
-	else:
-		%ProductionScreenGUI.hide()
-		last_screen.show()
 
-
-
-func _on_upgrade_screeen_toggle_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		%UpgradeScreenGUI.show()
+func _on_upgrade_screeen_toggle_pressed() -> void:
+	if %UpgradeScreenGUI.visible == false:
+		%ArchiveScreenGUI.hide()
 		%CombatScreenGUI.hide()
 		%ProductionScreenGUI.hide()
-		last_screen = %UpgradeScreenGUI
-	else:
+		%UpgradeScreenGUI.show()
+		
+func _on_combat_screen_toggle_pressed() -> void:
+	if %CombatScreenGUI.visible == false:
+		%ArchiveScreenGUI.hide()
+		%ProductionScreenGUI.hide()
 		%UpgradeScreenGUI.hide()
-		last_screen.show()
+		%CombatScreenGUI.show()
+
+func _on_archive_screen_toggle_pressed() -> void:
+	if %ArchiveScreenGUI.visible == false:
+		%ProductionScreenGUI.hide()
+		%UpgradeScreenGUI.hide()
+		%CombatScreenGUI.hide()
+		%ArchiveScreenGUI.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=16 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
 [ext_resource type="PackedScene" uid="uid://b3nrf0a4v8gbs" path="res://Worker/guard.tscn" id="2_8jrwq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de7db0m0ymybd" path="res://Worker/spider.tscn" id="4_dq8jp"]
 [ext_resource type="Texture2D" uid="uid://csddq02y724mh" path="res://layout1.png" id="5_vk86k"]
 [ext_resource type="Script" uid="uid://bb3p0qylaajkr" path="res://debug_screen_gui.gd" id="9_gth8u"]
+[ext_resource type="Script" uid="uid://dn4pcxlmgm2lw" path="res://production_screen_gui.gd" id="10_yawsv"]
 
 [sub_resource type="Resource" id="Resource_yawsv"]
 resource_local_to_scene = true
@@ -77,7 +78,6 @@ offset_left = 48.0
 offset_top = 16.0
 offset_right = 142.0
 offset_bottom = 47.0
-toggle_mode = true
 text = "Production"
 
 [node name="UpgradeScreeenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
@@ -87,7 +87,6 @@ offset_left = 56.0
 offset_top = 80.0
 offset_right = 138.0
 offset_bottom = 111.0
-toggle_mode = true
 text = "Upgrades"
 
 [node name="CombatScreenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
@@ -97,7 +96,6 @@ offset_left = 64.0
 offset_top = 144.0
 offset_right = 133.0
 offset_bottom = 175.0
-toggle_mode = true
 text = "Combat"
 
 [node name="ArchiveScreenToggle" type="Button" parent="ManagementScreenGUI/SideBarGUI"]
@@ -107,7 +105,6 @@ offset_left = 40.0
 offset_top = 208.0
 offset_right = 163.0
 offset_bottom = 239.0
-toggle_mode = true
 text = "Archive"
 
 [node name="InfoBarGUI" type="Control" parent="ManagementScreenGUI"]
@@ -205,6 +202,7 @@ stats = SubResource("Resource_le433")
 
 [node name="UpgradeScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
@@ -242,6 +240,7 @@ prereq = [NodePath("../Upgrade1")]
 
 [node name="CombatScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
@@ -257,6 +256,51 @@ offset_left = 192.0
 offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 576.0
+script = ExtResource("10_yawsv")
+
+[node name="GuardProdctionButton" type="Button" parent="ProductionScreenGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 80.0
+offset_right = 120.0
+offset_bottom = 111.0
+text = "Guard"
+
+[node name="SpiderProductionButton" type="Button" parent="ProductionScreenGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 144.0
+offset_right = 122.0
+offset_bottom = 175.0
+text = "Spider"
+
+[node name="ShooterProductionButton" type="Button" parent="ProductionScreenGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 384.0
+offset_top = 80.0
+offset_right = 453.0
+offset_bottom = 111.0
+text = "Shooter"
+
+[node name="SlasherProductionButton" type="Button" parent="ProductionScreenGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 449.0
+offset_bottom = 159.0
+text = "Slasher"
+
+[node name="ArchiveScreenGUI" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="DebugScreenGUI" type="Control" parent="."]
 layout_mode = 3
@@ -284,11 +328,16 @@ offset_right = 248.0
 offset_bottom = 39.0
 text = "Toggle Spider"
 
-[connection signal="toggled" from="ManagementScreenGUI/SideBarGUI/ProductionScreenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_production_screen_toggle_toggled"]
-[connection signal="toggled" from="ManagementScreenGUI/SideBarGUI/UpgradeScreeenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_upgrade_screeen_toggle_toggled"]
+[connection signal="pressed" from="ManagementScreenGUI/SideBarGUI/ProductionScreenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_production_screen_toggle_pressed"]
+[connection signal="pressed" from="ManagementScreenGUI/SideBarGUI/UpgradeScreeenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_upgrade_screeen_toggle_pressed"]
+[connection signal="pressed" from="ManagementScreenGUI/SideBarGUI/CombatScreenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_combat_screen_toggle_pressed"]
+[connection signal="pressed" from="ManagementScreenGUI/SideBarGUI/ArchiveScreenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_archive_screen_toggle_pressed"]
 [connection signal="pressed" from="ManagementScreenGUI/InfoBarGUI/EndTurnButton" to="ManagementScreenGUI/ManagementScreen" method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_pressed"]
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
+[connection signal="pressed" from="ProductionScreenGUI/GuardProdctionButton" to="ProductionScreenGUI" method="_on_guard_prodction_button_pressed"]
+[connection signal="pressed" from="ProductionScreenGUI/SpiderProductionButton" to="ProductionScreenGUI" method="_on_spider_production_button_pressed"]
+[connection signal="pressed" from="ProductionScreenGUI/ShooterProductionButton" to="ProductionScreenGUI" method="_on_shooter_production_button_pressed"]
 [connection signal="toggled" from="DebugScreenGUI/ToggleGuard" to="DebugScreenGUI" method="_on_toggle_guard_toggled"]
