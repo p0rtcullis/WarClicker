@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://hcx5tmoxeo7l"]
+
+[ext_resource type="Script" uid="uid://cd56h13fncu3c" path="res://Unit/stabber_unit.gd" id="1_p3kca"]
+[ext_resource type="Resource" uid="uid://k8uv62cnbh4k" path="res://Resources/stabber_unit.tres" id="2_p3kca"]
+
+[node name="StabberUnit" type="Node2D"]
+script = ExtResource("1_p3kca")
+stats = ExtResource("2_p3kca")

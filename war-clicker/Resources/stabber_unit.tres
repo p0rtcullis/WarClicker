@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BaseUnitStrategy" load_steps=2 format=3 uid="uid://k8uv62cnbh4k"]
+
+[ext_resource type="Script" uid="uid://c236vyguht3h" path="res://Util/Strategy/base_unit_strategy.gd" id="1_63rnq"]
+
+[resource]
+script = ExtResource("1_63rnq")
+unit_name = "Stabber"
+unit_text = "He stabs dudes"
+green_cost = 5
