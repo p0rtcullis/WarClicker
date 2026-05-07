@@ -5,11 +5,21 @@ extends Control
 
 @onready var selected_worker = %Guard
 
-var guard_production_queue : Array = []
-var spider_production_queue : Array = []
 
-
-
+func _production_update() -> void:
+	for worker in %ManagementScreen.worker_list:
+		if worker.production_queue.is_empty():
+			print("Nothing to Produce!")
+			continue
+		else:
+			if worker.stats.production_timer < worker.production_queue[0].stats.cook_time:
+				print("Turns Remaining: " + str(worker.production_queue[0].stats.cook_time - worker.stats.production_timer))
+				worker.stats.production_timer +=1
+			else:
+				print("Unit Produced")
+				worker.stats.production_timer = 0
+				%ManagementScreen.unit_list.append(worker.production_queue.pop_front())
+				print(%ManagementScreen.unit_list)
 
 func _on_guard_prodction_button_pressed() -> void:
 	selected_worker = %Guard
@@ -22,4 +32,4 @@ func _on_spider_production_button_pressed() -> void:
 func _on_shooter_production_button_pressed() -> void:
 	var unit = shooter_template.instantiate()
 	selected_worker.production_queue.append(unit)
-	print(selected_worker.production_queue)
+	#print(selected_worker.production_queue)

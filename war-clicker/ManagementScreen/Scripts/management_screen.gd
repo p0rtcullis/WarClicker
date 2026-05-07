@@ -89,4 +89,4 @@ func _on_end_turn_button_pressed() -> void:
 	total_brown += point_count(POINTS.BROWN)
 	total_magenta += point_count(POINTS.MAGENTA)
 	total_purple += point_count(POINTS.PURPLE)
-	
+	%ProductionScreenGUI._production_update()

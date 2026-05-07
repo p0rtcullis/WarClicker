@@ -7,3 +7,4 @@ script = ExtResource("1_63rnq")
 unit_name = "Stabber"
 unit_text = "He stabs dudes"
 green_cost = 5
+cook_time = 5

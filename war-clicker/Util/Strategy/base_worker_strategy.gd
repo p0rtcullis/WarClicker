@@ -13,3 +13,4 @@ extends Resource
 #number of units produced per worker
 @export var production_eff : int = 0
 @export var unlocked : bool = false
+@export var production_timer : int = 0
