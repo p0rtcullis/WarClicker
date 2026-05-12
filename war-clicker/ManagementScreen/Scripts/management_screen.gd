@@ -42,8 +42,13 @@ var magenta_mod : int = 0
 		
 var purple_mod : int = 0
 
-enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,WARLOCK,SEER,AVENGER,HAWK,SCORPION}
+enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,AVENGER,HAWK,SCORPION,SEER,WARLOCK}
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
+
+var colony_level : int = 1
+var mass_guard : int = 0
+var mass_spider : int = 0
+				
 
 
 # Called when the node enters the scene tree for the first time.

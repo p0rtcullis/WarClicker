@@ -10,3 +10,11 @@ func _on_toggle_guard_toggled(toggled_on: bool) -> void:
 		%Guard.stats.unlocked = true
 	else:
 		%Guard.stats.unlocked = false
+	print("Guard Unlocked: " + str(%Guard.stats.unlocked ))
+
+func _on_toggle_spider_toggled(toggled_on: bool) -> void:
+	if %Spider.stats.unlocked == false:
+		%Spider.stats.unlocked = true
+	else:
+		%Spider.stats.unlocked = false
+	print("Spider Unlocked: " + str(%Spider.stats.unlocked ))

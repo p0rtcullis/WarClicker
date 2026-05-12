@@ -27,9 +27,10 @@ func _on_guard_prodction_button_pressed() -> void:
 func _on_spider_production_button_pressed() -> void:
 	selected_worker = %Spider
 
-
-
 func _on_shooter_production_button_pressed() -> void:
-	var unit = shooter_template.instantiate()
-	selected_worker.production_queue.append(unit)
-	#print(selected_worker.production_queue)
+	if %ShooterUpgrade not in %UpgradeScreenGUI.all_upgrades:
+		print("Upgrade not unlocked!")
+	else:
+		var unit = shooter_template.instantiate()
+		selected_worker.production_queue.append(unit)
+		#print(selected_worker.production_queue)

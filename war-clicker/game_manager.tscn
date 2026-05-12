@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0n6btegy48v1"]
+[gd_scene load_steps=18 format=3 uid="uid://c0n6btegy48v1"]
 
 [ext_resource type="PackedScene" uid="uid://bmg3wqjwo13dg" path="res://ManagementScreen/management_screen.tscn" id="1_70yv6"]
 [ext_resource type="PackedScene" uid="uid://b3nrf0a4v8gbs" path="res://Worker/guard.tscn" id="2_8jrwq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de7db0m0ymybd" path="res://Worker/spider.tscn" id="4_dq8jp"]
 [ext_resource type="Texture2D" uid="uid://csddq02y724mh" path="res://layout1.png" id="5_vk86k"]
 [ext_resource type="Script" uid="uid://bb3p0qylaajkr" path="res://debug_screen_gui.gd" id="9_gth8u"]
+[ext_resource type="Script" uid="uid://l7c16c3ddux7" path="res://combat_screen_gui.gd" id="10_le433"]
 [ext_resource type="Script" uid="uid://dn4pcxlmgm2lw" path="res://production_screen_gui.gd" id="10_yawsv"]
 
 [sub_resource type="Resource" id="Resource_yawsv"]
@@ -40,6 +41,14 @@ resource_local_to_scene = true
 script = ExtResource("4_d5upp")
 upgrade_name = "Upgrade Max Workers +2"
 upgrade_text = " Add another worker slot. Cost: 100 Green"
+green_cost = 100
+metadata/_custom_type_script = "uid://do7phg52jpppn"
+
+[sub_resource type="Resource" id="Resource_2tadr"]
+resource_local_to_scene = true
+script = ExtResource("4_d5upp")
+upgrade_name = "Add Shooters"
+upgrade_text = " Add Shooter Bugs"
 green_cost = 100
 metadata/_custom_type_script = "uid://do7phg52jpppn"
 
@@ -238,18 +247,36 @@ offset_bottom = 135.0
 stats = SubResource("Resource_shwjl")
 prereq = [NodePath("../Upgrade1")]
 
+[node name="ShooterUpgrade" parent="UpgradeScreenGUI" instance=ExtResource("3_o2178")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 472.0
+offset_top = 64.0
+offset_right = 575.0
+offset_bottom = 95.0
+stats = SubResource("Resource_2tadr")
+
 [node name="CombatScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
 offset_top = 64.0
 offset_right = 1152.0
 offset_bottom = 576.0
+script = ExtResource("10_le433")
+
+[node name="BattleButton1" type="Button" parent="CombatScreenGUI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 175.0
+offset_bottom = 95.0
+text = "Raiding Party"
 
 [node name="ProductionScreenGUI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 192.0
@@ -326,6 +353,7 @@ offset_left = 136.0
 offset_top = 8.0
 offset_right = 248.0
 offset_bottom = 39.0
+toggle_mode = true
 text = "Toggle Spider"
 
 [connection signal="pressed" from="ManagementScreenGUI/SideBarGUI/ProductionScreenToggle" to="ManagementScreenGUI/SideBarGUI" method="_on_production_screen_toggle_pressed"]
@@ -337,7 +365,9 @@ text = "Toggle Spider"
 [connection signal="toggled" from="UpgradeScreenGUI/ResetUpgradesButton" to="UpgradeScreenGUI" method="_on_reset_upgrades_button_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade1" to="UpgradeScreenGUI" method="_on_upgrade1_toggled"]
 [connection signal="toggled" from="UpgradeScreenGUI/Upgrade2" to="UpgradeScreenGUI" method="_on_upgrade_2_toggled"]
+[connection signal="pressed" from="CombatScreenGUI/BattleButton1" to="CombatScreenGUI" method="_on_battle_button_1_pressed"]
 [connection signal="pressed" from="ProductionScreenGUI/GuardProdctionButton" to="ProductionScreenGUI" method="_on_guard_prodction_button_pressed"]
 [connection signal="pressed" from="ProductionScreenGUI/SpiderProductionButton" to="ProductionScreenGUI" method="_on_spider_production_button_pressed"]
 [connection signal="pressed" from="ProductionScreenGUI/ShooterProductionButton" to="ProductionScreenGUI" method="_on_shooter_production_button_pressed"]
 [connection signal="toggled" from="DebugScreenGUI/ToggleGuard" to="DebugScreenGUI" method="_on_toggle_guard_toggled"]
+[connection signal="toggled" from="DebugScreenGUI/ToggleSpider" to="DebugScreenGUI" method="_on_toggle_spider_toggled"]
