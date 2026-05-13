@@ -8,13 +8,17 @@ func _ready() -> void:
 func _on_toggle_guard_toggled(toggled_on: bool) -> void:
 	if %Guard.stats.unlocked == false:
 		%Guard.stats.unlocked = true
+		%GuardProdctionButton.show()
 	else:
 		%Guard.stats.unlocked = false
+		%GuardProdctionButton.hide()
 	print("Guard Unlocked: " + str(%Guard.stats.unlocked ))
 
 func _on_toggle_spider_toggled(toggled_on: bool) -> void:
 	if %Spider.stats.unlocked == false:
 		%Spider.stats.unlocked = true
+		%SpiderProductionButton.show()
 	else:
 		%Spider.stats.unlocked = false
+		%SpiderProductionButton.hide()
 	print("Spider Unlocked: " + str(%Spider.stats.unlocked ))

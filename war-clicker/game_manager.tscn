@@ -190,6 +190,27 @@ offset_right = 550.0
 offset_bottom = 47.0
 text = "End Turn"
 
+[node name="MassWorkers" type="HBoxContainer" parent="ManagementScreenGUI/InfoBarGUI"]
+layout_mode = 0
+offset_left = 576.0
+offset_right = 673.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/MassWorkers"]
+layout_mode = 2
+
+[node name="MassGuardTitle" type="Label" parent="ManagementScreenGUI/InfoBarGUI/MassWorkers/VBoxContainer"]
+layout_mode = 2
+text = "Mass Guard:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ManagementScreenGUI/InfoBarGUI/MassWorkers"]
+layout_mode = 2
+
+[node name="MassGuardLabel" type="Label" parent="ManagementScreenGUI/InfoBarGUI/MassWorkers/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
 [node name="ManagementScreen" parent="ManagementScreenGUI" instance=ExtResource("1_70yv6")]
 unique_name_in_owner = true
 

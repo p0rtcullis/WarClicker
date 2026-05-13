@@ -46,7 +46,10 @@ enum WORKERS {GUARD,REAPER,BANSHEE,SPIDER,DRAGON,AUTARCH,AVENGER,HAWK,SCORPION,S
 enum POINTS {GREEN,BROWN,MAGENTA,PURPLE}
 
 var colony_level : int = 1
-var mass_guard : int = 0
+var mass_guard : int = 0:
+	set(value):
+		mass_guard = value
+		%MassGuardLabel.text = str(value)
 var mass_spider : int = 0
 				
 
