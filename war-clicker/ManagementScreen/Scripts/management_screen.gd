@@ -91,10 +91,17 @@ func update_points(new_points: int, color : POINTS):
 			POINTS.PURPLE:
 				total_purple += new_points
 				
-	
 func _on_end_turn_button_pressed() -> void:
 	total_green += point_count(POINTS.GREEN)
 	total_brown += point_count(POINTS.BROWN)
 	total_magenta += point_count(POINTS.MAGENTA)
 	total_purple += point_count(POINTS.PURPLE)
 	%ProductionScreenGUI._production_update()
+	current_turn +=1
+	print(current_turn)
+	for turn in %EventSystem.trigger_turns:
+		if turn == current_turn:
+			Events.emit_signal("trigger_event")
+			break
+		else:
+			print("false")

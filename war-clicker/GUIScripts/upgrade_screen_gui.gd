@@ -50,5 +50,5 @@ func _on_upgrade1_toggled(toggled_on: bool) -> void:
 		%ManagementScreen.update_max_workers(-1)
 		%Upgrade1.disabled = false
 		
-func _on_upgrade_2_toggled(toggled_on: bool) -> void:
+func _on_upgrade_2_toggled(_toggled_on: bool) -> void:
 	pass # Replace with function body.

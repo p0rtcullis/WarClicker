@@ -5,7 +5,7 @@ extends Control
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _on_toggle_guard_toggled(toggled_on: bool) -> void:
+func _on_toggle_guard_toggled(_toggled_on: bool) -> void:
 	if %Guard.stats.unlocked == false:
 		%Guard.stats.unlocked = true
 		%GuardProdctionButton.show()
@@ -14,7 +14,7 @@ func _on_toggle_guard_toggled(toggled_on: bool) -> void:
 		%GuardProdctionButton.hide()
 	print("Guard Unlocked: " + str(%Guard.stats.unlocked ))
 
-func _on_toggle_spider_toggled(toggled_on: bool) -> void:
+func _on_toggle_spider_toggled(_toggled_on: bool) -> void:
 	if %Spider.stats.unlocked == false:
 		%Spider.stats.unlocked = true
 		%SpiderProductionButton.show()
